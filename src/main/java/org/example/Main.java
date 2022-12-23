@@ -14,10 +14,10 @@ public class Main {
                 counter.incrementWithoutSynchronization();
             }
         };
-        Thread t1 = new Thread(synchronizedIncrement);
-        Thread t2 = new Thread(synchronizedIncrement);
-        Thread t3 = new Thread(synchronizedIncrement);
-        System.out.println("Synchronized increment example: ");
+        Thread t1 = new Thread(incrementRaceCondition);
+        Thread t2 = new Thread(incrementRaceCondition);
+        Thread t3 = new Thread(incrementRaceCondition);
+        System.out.println("Race condition increment example: ");
         t1.start();
         t2.start();
         t3.start();
@@ -25,10 +25,10 @@ public class Main {
         System.out.println("Value must be 30 000 but real value after increment is: " + counter.value());
         counter.setCounter(0);
 
-        System.out.println("\nRace condition increment example: ");
-        Thread t4 = new Thread(incrementRaceCondition);
-        Thread t5 = new Thread(incrementRaceCondition);
-        Thread t6 = new Thread(incrementRaceCondition);
+        System.out.println("\nSynchronized increment example: ");
+        Thread t4 = new Thread(synchronizedIncrement);
+        Thread t5 = new Thread(synchronizedIncrement);
+        Thread t6 = new Thread(synchronizedIncrement);
         t4.start();
         t5.start();
         t6.start();
